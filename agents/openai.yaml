@@ -1,4 +1,4 @@
 interface:
   display_name: "Megatect"
-  short_description: "Evidence-backed software architecture analysis."
+  short_description: "Evidence-backed architecture analysis informed by Richards and Clean Architecture."
   default_prompt: "Use $megatect to analyze this repository architecture, choose appropriate patterns, and produce an evidence-backed architecture plan."
