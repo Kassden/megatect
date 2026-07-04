@@ -6,6 +6,18 @@ The architecture rubrics are original summaries informed by Mark Richards' `Soft
 
 Use Megatect when you want an agent to inspect a real codebase before recommending architecture changes, choosing between modular monolith, layered, clean architecture, event-driven, microkernel, microservices, or space-based styles, or writing architecture plans grounded in code evidence.
 
+## Before / After
+
+Raw file-level dependency graphs are useful evidence, but they can be too dense to reason about directly at architecture scale.
+
+![Before: messy Cortex file-level dependency graph](assets/graphs/before-cortex-file-relations.svg)
+
+Megatect turns the same kind of repo evidence into system-level architecture views that are easier to use for boundary, risk, and pattern decisions.
+
+![After: Megatect Cortex system-level graph](assets/graphs/after-cortex-meta-systems.svg)
+
+The before graph is an existing Cortex file-relation graph. The after graph is generated from Megatect's Cortex `meta-systems.dot` output with Graphviz.
+
 ## Features
 
 - Repository inventory: detects stack signals, source files, API routes, workers, schemas, integrations, package/config files, and docs.
