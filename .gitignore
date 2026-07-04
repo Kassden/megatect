@@ -1,0 +1,29 @@
+# Local source material. Do not publish copyrighted PDFs or extracted text.
+local-sources/
+*.pdf
+*.epub
+*.mobi
+*.txt
+
+# Test and generated architecture output.
+.megatect-test/
+docs/architecture/
+docs/architecture-graphs/
+architecture-boundary-report.json
+architecture-scorecard.json
+architecture-scorecard.md
+architecture-pattern-fit.json
+architecture-pattern-fit.md
+
+# Python/runtime caches.
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# OS/editor noise.
+.DS_Store
+.idea/
+.vscode/
+*.swp
