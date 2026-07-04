@@ -2,21 +2,21 @@
 
 Megatect is an evidence-backed software architecture skill for AI coding agents. It combines repository inventory, dependency graphing, boundary checks, risk scorecards, pattern-fit analysis, ADR helpers, and concise architecture references.
 
-The architecture rubrics are original summaries informed by Mark Richards' `Software Architecture Patterns` and Robert C. Martin's `Clean Architecture: A Craftsman's Guide to Software Structure and Design`, plus practical architecture best-practice material. The books are attributed as source material; their PDFs and long excerpts are not included.
+The architecture rubrics are original summaries informed by established architecture references and practical architecture best-practice material. The books are attributed as source material; their PDFs and long excerpts are not included.
 
 Use Megatect when you want an agent to inspect a real codebase before recommending architecture changes, choosing between modular monolith, layered, clean architecture, event-driven, microkernel, microservices, or space-based styles, or writing architecture plans grounded in code evidence.
 
-## Before / After
+## Before / After: From Tangle to Boundaries
 
-Raw file-level dependency graphs are useful evidence, but they can be too dense to reason about directly at architecture scale.
+The before graph is a synthetic example of a repo with wrong boundaries: UI and routes bypass application policy, domain code depends on infrastructure details, dead code stays connected, test helpers leak into runtime, and service cycles hide ownership.
 
-![Before: messy Cortex file-level dependency graph](assets/graphs/before-cortex-file-relations.svg)
+![Before: tangled repo with wrong boundaries, dead code, cycles, and direct infrastructure access](assets/graphs/before-boundary-tangle.svg)
 
-Megatect turns the same kind of repo evidence into system-level architecture views that are easier to use for boundary, risk, and pattern decisions.
+The after graph is a synthetic example of the target shape Megatect helps plan and verify: delivery code depends on use cases, domain policy is protected, details sit behind ports and adapters, tests exercise public boundaries, and architecture rules are explicit.
 
-![After: Megatect Cortex system-level graph](assets/graphs/after-cortex-meta-systems.svg)
+![After: clean modular architecture with explicit boundaries and stable dependency direction](assets/graphs/after-clean-boundaries.svg)
 
-The before graph is an existing Cortex file-relation graph. The after graph is generated from Megatect's Cortex `meta-systems.dot` output with Graphviz.
+These visuals are explanatory examples, not claims about a specific repository.
 
 ## Features
 
@@ -213,6 +213,12 @@ Megatect includes concise reference rubrics:
 - `references/architecture-best-practices.md`: practical review heuristics synthesized from the source material and the 42 Coffee Cups article.
 - `references/pattern-fit-rubric.md`: decision rubric for accepting or rejecting candidate architecture styles.
 - `references/source-manifest.md`: provenance notes and local-only source filename expectations.
+
+Source references:
+
+- Richards, M. (2015). *Software Architecture Patterns*. O'Reilly Media.
+- Martin, R. C. (2017). *Clean Architecture: A Craftsman's Guide to Software Structure and Design*. Prentice Hall.
+- 42 Coffee Cups Team. (2025, November 16). *10 Essential Software Architecture Best Practices for 2025*. 42 Coffee Cups. https://www.42coffeecups.com/blog/software-architecture-best-practices
 
 The source PDFs are not included in this repository. For local verification, keep private source files under `local-sources/`; that folder is ignored by git.
 

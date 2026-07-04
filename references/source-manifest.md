@@ -2,20 +2,22 @@
 
 This file records the source material used to derive Megatect's concise architecture rubrics. Do not commit copyrighted PDFs, extracted full text, or long excerpts.
 
+## Source References
+
+- Richards, M. (2015). *Software Architecture Patterns*. O'Reilly Media.
+- Martin, R. C. (2017). *Clean Architecture: A Craftsman's Guide to Software Structure and Design*. Prentice Hall.
+- 42 Coffee Cups Team. (2025, November 16). *10 Essential Software Architecture Best Practices for 2025*. 42 Coffee Cups. https://www.42coffeecups.com/blog/software-architecture-best-practices
+
 ## Local Book Sources
 
 Expected local-only filenames:
 
-- Mark Richards, `Software Architecture Patterns`:
+- Richards, M. (2015). *Software Architecture Patterns*. O'Reilly Media:
   - `local-sources/Software Architecture Patterns.pdf`
-- Robert C. Martin, `Clean Architecture: A Craftsman's Guide to Software Structure and Design`:
+- Martin, R. C. (2017). *Clean Architecture: A Craftsman's Guide to Software Structure and Design*. Prentice Hall:
   - `local-sources/Clean Architecture A Craftsman's Guide to Software Structure and Design.pdf`
 
 These files may be symlinks or private local copies for verification. They are ignored by git.
-
-## Public Web Source
-
-- 42 Coffee Cups, "Software Architecture Best Practices": https://www.42coffeecups.com/blog/software-architecture-best-practices
 
 ## Derived Reference Files
 
