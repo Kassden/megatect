@@ -1,6 +1,6 @@
 ---
 name: megatect
-description: Use for evidence-backed software architecture discovery, review, pattern selection, boundary analysis, dependency graphing, scorecards, ADR creation, modularization plans, clean-architecture guidance, and deciding whether to keep a modular monolith or move toward event-driven, microkernel, microservices, space-based, layered, or clean architecture. Trigger when Codex is asked to act as an architect, improve architecture, choose architecture patterns, write ADRs, analyze coupling, define bounded contexts, generate architecture diagrams, or create architecture plans grounded in real code evidence and architecture best practices.
+description: "Use for evidence-backed software architecture discovery, review, pattern selection, boundary analysis, dependency graphing, scorecards, ADR creation, modularization plans, and clean-architecture guidance. Megatect's rubrics are original summaries informed by Mark Richards' Software Architecture Patterns and Robert C. Martin's Clean Architecture: A Craftsman's Guide to Software Structure and Design, plus practical architecture best-practice material. Trigger when Codex is asked to act as an architect, improve architecture, choose between modular monolith, layered, clean architecture, event-driven, microkernel, microservices, or space-based patterns, write ADRs, analyze coupling, define bounded contexts, generate architecture diagrams, or create architecture plans grounded in real code evidence."
 ---
 
 # Megatect
@@ -58,8 +58,8 @@ Inspect the repository before judging it. Use scripts for inventory, graphs, bou
 
 ## References
 
-- Read `references/software-architecture-patterns.md` for source-derived architecture pattern tradeoffs.
-- Read `references/clean-architecture-principles.md` for dependency direction, boundaries, component principles, and details discipline.
+- Read `references/software-architecture-patterns.md` for source-derived architecture pattern tradeoffs informed by Mark Richards' `Software Architecture Patterns`.
+- Read `references/clean-architecture-principles.md` for dependency direction, boundaries, component principles, and details discipline informed by Robert C. Martin's `Clean Architecture`.
 - Read `references/architecture-best-practices.md` for practical review heuristics from the PDFs and 42 Coffee Cups article.
 - Read `references/pattern-fit-rubric.md` when choosing or rejecting architecture styles.
 - Read `references/source-manifest.md` only when verifying provenance or maintaining the public repo; do not vendor PDFs or long excerpts.

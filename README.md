@@ -2,6 +2,8 @@
 
 Megatect is an evidence-backed software architecture skill for AI coding agents. It combines repository inventory, dependency graphing, boundary checks, scorecards, pattern-fit analysis, ADR helpers, and concise architecture references.
 
+The architecture rubrics are original summaries informed by Mark Richards' `Software Architecture Patterns` and Robert C. Martin's `Clean Architecture: A Craftsman's Guide to Software Structure and Design`, plus practical architecture best-practice material. The books are attributed as source material; their PDFs and long excerpts are not included.
+
 Use it when you want an agent to inspect a real codebase before recommending architecture changes, choosing between modular monolith, layered, clean architecture, event-driven, microkernel, microservices, or space-based styles, or writing architecture plans grounded in code evidence.
 
 ## Install
@@ -40,7 +42,13 @@ Use the Megatect skill in this repository. Read SKILL.md first, then use the scr
 
 ## Source References
 
-The bundled references are original summaries and rubrics derived from architecture books and public web material. The source PDFs are not included in this repository. See `references/source-manifest.md`.
+The bundled references are original summaries and rubrics derived from:
+
+- Mark Richards, `Software Architecture Patterns`
+- Robert C. Martin, `Clean Architecture: A Craftsman's Guide to Software Structure and Design`
+- 42 Coffee Cups, "Software Architecture Best Practices"
+
+The source PDFs are not included in this repository. See `references/source-manifest.md`.
 
 For local verification, keep private source files under `local-sources/`; that folder is ignored by git.
 

@@ -6,8 +6,10 @@ This file records the source material used to derive Megatect's concise architec
 
 Expected local-only filenames:
 
-- `local-sources/Software Architecture Patterns.pdf`
-- `local-sources/Clean Architecture A Craftsman's Guide to Software Structure and Design.pdf`
+- Mark Richards, `Software Architecture Patterns`:
+  - `local-sources/Software Architecture Patterns.pdf`
+- Robert C. Martin, `Clean Architecture: A Craftsman's Guide to Software Structure and Design`:
+  - `local-sources/Clean Architecture A Craftsman's Guide to Software Structure and Design.pdf`
 
 These files may be symlinks or private local copies for verification. They are ignored by git.
 
