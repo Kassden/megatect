@@ -5,6 +5,7 @@
   <a href="https://github.com/Kassden/megatect/forks"><img alt="GitHub forks" src="https://img.shields.io/github/forks/Kassden/megatect?style=for-the-badge&logo=github"></a>
   <a href="https://github.com/Kassden/megatect/watchers"><img alt="GitHub watchers" src="https://img.shields.io/github/watchers/Kassden/megatect?style=for-the-badge&logo=github"></a>
   <img alt="Repo size" src="https://img.shields.io/github/repo-size/Kassden/megatect?style=for-the-badge">
+  <a href="https://tokei.kojix2.net/github/Kassden/megatect"><img alt="Lines of code" src="https://img.shields.io/endpoint?style=for-the-badge&url=https%3A%2F%2Ftokei.kojix2.net%2Fbadge%2Fgithub%2FKassden%2Fmegatect%2Flines"></a>
   <img alt="Languages" src="https://img.shields.io/github/languages/count/Kassden/megatect?style=for-the-badge">
   <img alt="Top language" src="https://img.shields.io/github/languages/top/Kassden/megatect?style=for-the-badge">
   <a href="https://github.com/Kassden/megatect/commits/main"><img alt="Last commit" src="https://img.shields.io/github/last-commit/Kassden/megatect?style=for-the-badge"></a>
