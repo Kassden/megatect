@@ -51,21 +51,48 @@ These visuals are explanatory examples, not claims about a specific repository.
 
 ### Codex
 
-Clone this repo into your Codex skills directory:
+Recommended Codex install:
+
+```bash
+python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
+  --repo Kassden/megatect \
+  --path . \
+  --name megatect
+```
+
+Restart Codex or start a new session, then ask for `$megatect` or use architecture prompts that match the skill description in `SKILL.md`.
+
+For an editable install, clone the repo directly into your Codex skills directory:
 
 ```bash
 mkdir -p ~/.codex/skills
 git clone https://github.com/Kassden/megatect.git ~/.codex/skills/megatect
 ```
 
-Restart Codex or start a new session, then ask for `$megatect` or use architecture prompts that match the skill description in `SKILL.md`.
-
-If you already have Megatect installed and want repo updates to update the live skill:
+If you installed with `git clone`, update with:
 
 ```bash
 cd ~/.codex/skills/megatect
 git pull
 ```
+
+### Claude Code
+
+Install as a personal Claude Code skill:
+
+```bash
+mkdir -p ~/.claude/skills
+git clone https://github.com/Kassden/megatect.git ~/.claude/skills/megatect
+```
+
+Or install it for one project:
+
+```bash
+mkdir -p .claude/skills
+git clone https://github.com/Kassden/megatect.git .claude/skills/megatect
+```
+
+Restart Claude Code or start a new session, then ask Claude to use the Megatect skill for architecture review, dependency graphing, ADRs, or boundary analysis.
 
 ### Other AI Coding Agents
 
