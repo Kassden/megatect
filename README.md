@@ -1,5 +1,22 @@
 # Megatect
 
+<p align="center">
+  <a href="https://github.com/Kassden/megatect/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/Kassden/megatect?style=for-the-badge&logo=github"></a>
+  <a href="https://github.com/Kassden/megatect/forks"><img alt="GitHub forks" src="https://img.shields.io/github/forks/Kassden/megatect?style=for-the-badge&logo=github"></a>
+  <a href="https://github.com/Kassden/megatect/watchers"><img alt="GitHub watchers" src="https://img.shields.io/github/watchers/Kassden/megatect?style=for-the-badge&logo=github"></a>
+  <img alt="Repo size" src="https://img.shields.io/github/repo-size/Kassden/megatect?style=for-the-badge">
+  <img alt="Languages" src="https://img.shields.io/github/languages/count/Kassden/megatect?style=for-the-badge">
+  <img alt="Top language" src="https://img.shields.io/github/languages/top/Kassden/megatect?style=for-the-badge">
+  <a href="https://github.com/Kassden/megatect/commits/main"><img alt="Last commit" src="https://img.shields.io/github/last-commit/Kassden/megatect?style=for-the-badge"></a>
+  <a href="https://github.com/Kassden/megatect/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/Kassden/megatect?style=for-the-badge"></a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/Kassden/megatect"><img alt="Install for Codex" src="https://img.shields.io/badge/Codex-install-0A84FF?style=for-the-badge"></a>
+  <a href="https://github.com/Kassden/megatect#quick-start"><img alt="Quick start" src="https://img.shields.io/badge/Quick%20Start-commands-2EA44F?style=for-the-badge"></a>
+  <a href="https://github.com/Kassden/megatect#graphs"><img alt="Graph support" src="https://img.shields.io/badge/Graphs-DOT%20%7C%20Mermaid%20%7C%20SVG-7B61FF?style=for-the-badge"></a>
+</p>
+
 Megatect is an evidence-backed software architecture skill for AI coding agents. It combines repository inventory, dependency graphing, boundary checks, risk scorecards, pattern-fit analysis, ADR helpers, and concise architecture references.
 
 The architecture rubrics are original summaries informed by established architecture references and practical architecture best-practice material. The books are attributed as source material; their PDFs and long excerpts are not included.
