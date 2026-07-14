@@ -44,6 +44,8 @@ These visuals are explanatory examples, not claims about a specific repository.
 - Boundary checks: reports cycles and deep cross-system imports, optionally using an `architecture-boundaries.json` config.
 - Risk scorecards: summarizes coupling, hubs, system count, graph edges, API routes, workers, schemas, and integration pressure.
 - Pattern fit: recommends whether modular monolith, layered, clean architecture, event-driven, microkernel, microservices, or space-based architecture fits the evidence.
+- Canonical context: packs Megatect artifacts into `docs/architecture/CONTEXT.md` so future agents can read a compact repo baseline before spending tokens on broad rediscovery.
+- Context freshness checks: reports whether canonical context is `fresh`, `usable-with-drift`, `needs-light-refresh`, or `needs-full-refresh`.
 - ADR helpers: creates and checks concise Architecture Decision Records.
 - Source-derived references: includes compact rubrics for architecture patterns, Clean Architecture principles, practical best practices, and pattern selection.
 
@@ -169,6 +171,41 @@ PYTHONDONTWRITEBYTECODE=1 python3 scripts/architecture_pattern_fit.py \
   --out "$OUT/architecture/pattern-fit.json"
 ```
 
+Pack canonical context:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/architecture_context_pack.py \
+  --repo "$REPO" \
+  --inventory "$OUT/architecture/inventory.json" \
+  --index "$OUT/architecture-graphs/architecture-index.json" \
+  --scorecard "$OUT/architecture/scorecard.json" \
+  --boundary "$OUT/architecture/boundary-report.json" \
+  --pattern-fit "$OUT/architecture/pattern-fit.json" \
+  --out "$OUT/architecture/CONTEXT.md" \
+  --manifest "$OUT/architecture/context-manifest.json"
+```
+
+Or run the full evidence pipeline and context pack in one command:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/architecture_context_bootstrap.py "$REPO" \
+  --out "$OUT/architecture" \
+  --graphs-out "$OUT/architecture-graphs"
+```
+
+Check whether an existing context pack is safe to use:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/architecture_context_check.py "$REPO" \
+  --manifest "$OUT/architecture/context-manifest.json"
+```
+
+Optionally install a post-commit freshness warning hook. This is opt-in because high-commit repositories usually should not regenerate full architecture context after every commit:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/architecture_context_hook.py install --repo "$REPO"
+```
+
 Create an ADR:
 
 ```bash
@@ -195,6 +232,10 @@ PYTHONDONTWRITEBYTECODE=1 python3 scripts/architecture_adr.py check "$REPO"/docs
 | `scripts/architecture_boundary_check.py` | Check cycles and boundary violations from graph evidence. | Repo root, `--index`, optional `--config`, optional `--out`. | `boundary-report.json` plus console summary. | `python3 scripts/architecture_boundary_check.py "$REPO" --index "$OUT/architecture-graphs/architecture-index.json" --out "$OUT/architecture/boundary-report.json"` |
 | `scripts/architecture_scorecard.py` | Produce an architecture risk scorecard. | `--index`, `--inventory`, output paths. | `scorecard.json`, `scorecard.md`. | `python3 scripts/architecture_scorecard.py --index "$OUT/architecture-graphs/architecture-index.json" --inventory "$OUT/architecture/inventory.json" --json-out "$OUT/architecture/scorecard.json" --md-out "$OUT/architecture/scorecard.md"` |
 | `scripts/architecture_pattern_fit.py` | Recommend architecture style fit from evidence. | `--inventory`, `--scorecard`, optional `--out`. | `pattern-fit.json`. | `python3 scripts/architecture_pattern_fit.py --inventory "$OUT/architecture/inventory.json" --scorecard "$OUT/architecture/scorecard.json" --out "$OUT/architecture/pattern-fit.json"` |
+| `scripts/architecture_context_pack.py` | Pack generated evidence into canonical repo context. | Repo root plus inventory, graph index, scorecard, boundary report, and pattern-fit paths. | `CONTEXT.md`, `context-manifest.json`. | `python3 scripts/architecture_context_pack.py --repo "$REPO" --inventory "$OUT/architecture/inventory.json" --index "$OUT/architecture-graphs/architecture-index.json" --scorecard "$OUT/architecture/scorecard.json" --boundary "$OUT/architecture/boundary-report.json" --pattern-fit "$OUT/architecture/pattern-fit.json" --out "$OUT/architecture/CONTEXT.md" --manifest "$OUT/architecture/context-manifest.json"` |
+| `scripts/architecture_context_check.py` | Classify whether canonical context is fresh enough to use. | Repo root and `--manifest`. | Console freshness state, optional JSON report. | `python3 scripts/architecture_context_check.py "$REPO" --manifest "$OUT/architecture/context-manifest.json"` |
+| `scripts/architecture_context_bootstrap.py` | Run inventory, graphs, boundaries, scorecard, pattern fit, and context pack. | Repo root, optional output dirs. | Full Megatect artifact set. | `python3 scripts/architecture_context_bootstrap.py "$REPO" --out "$OUT/architecture" --graphs-out "$OUT/architecture-graphs"` |
+| `scripts/architecture_context_hook.py` | Install optional post-commit freshness warning hook. | `install --repo`, optional `--force`. | `.git/hooks/post-commit`. | `python3 scripts/architecture_context_hook.py install --repo "$REPO"` |
 | `scripts/architecture_adr.py` | Create or check concise ADRs. | `create` or `check` subcommand. | ADR markdown files or validation output. | `python3 scripts/architecture_adr.py create "Decision title" --context "..." --decision "..." --consequences "..." --dir docs/adr` |
 
 ## Generated Outputs
@@ -210,6 +251,8 @@ Common output files:
 - `docs/architecture/boundary-report.json`: cycles and boundary violations.
 - `docs/architecture/scorecard.json` and `.md`: machine-readable and human-readable risk scorecards.
 - `docs/architecture/pattern-fit.json`: architecture pattern fit recommendations.
+- `docs/architecture/CONTEXT.md`: compact canonical architecture context for future agent sessions.
+- `docs/architecture/context-manifest.json`: provenance and source-hash metadata used by freshness checks.
 - `docs/adr/*.md`: Architecture Decision Records created by the ADR helper.
 
 When testing a dirty repo, write outputs to `/tmp` or another scratch path so generated evidence does not mix with unrelated work:

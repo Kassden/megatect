@@ -9,32 +9,43 @@ Use Megatect as the high-rigor architecture skill. Keep the original `architect`
 
 ## Core Rule
 
-Inspect the repository before judging it. Use scripts for inventory, graphs, boundaries, scorecards, pattern fit, and ADRs. Use the references for architecture judgment only after repo evidence exists.
+Inspect the repository before judging it. Prefer the canonical context pack when it exists and is fresh enough; otherwise use scripts for inventory, graphs, boundaries, scorecards, pattern fit, context packing, and ADRs. Use the references for architecture judgment only after repo evidence exists.
 
 ## Workflow
 
-1. **Inventory the repo**
+1. **Check canonical context first**
+   - If `docs/architecture/CONTEXT.md` and `docs/architecture/context-manifest.json` exist, run `scripts/architecture_context_check.py <repo>`.
+   - If freshness is `fresh` or `usable-with-drift`, read `CONTEXT.md` first and inspect only changed or task-specific files.
+   - If freshness is `needs-light-refresh`, use `CONTEXT.md` as a baseline, inspect the changed entrypoint/config/dependency files, and refresh the context pack when cheap.
+   - If freshness is `needs-full-refresh`, regenerate Megatect artifacts before relying on `CONTEXT.md`.
+
+2. **Inventory the repo**
    - Run `scripts/architecture_inventory.py <repo> --out docs/architecture/inventory.json`.
    - Read existing `ARCHITECTURE.md`, `README.md`, `AGENTS.md`, `docs/**`, package scripts, schema/config files, workers, API routes, and integration surfaces.
 
-2. **Generate graph evidence**
+3. **Generate graph evidence**
    - Run `scripts/architecture_diagrams.py <repo> --out docs/architecture-graphs`.
    - Use `--no-render` when SVG rendering is unnecessary or blocked.
    - Inspect `architecture-index.json` for systems, edges, cycles, and hubs.
 
-3. **Check boundaries**
+4. **Check boundaries**
    - If a repo has `architecture-boundaries.json`, run `scripts/architecture_boundary_check.py <repo> --config architecture-boundaries.json`.
    - If no config exists, use the script without config to detect cycles and deep cross-system imports.
 
-4. **Score architecture risk**
+5. **Score architecture risk**
    - Run `scripts/architecture_scorecard.py --index docs/architecture-graphs/architecture-index.json --inventory docs/architecture/inventory.json`.
    - Treat the scorecard as evidence, not a verdict. Confirm with code reads.
 
-5. **Choose pattern fit**
+6. **Choose pattern fit**
    - Run `scripts/architecture_pattern_fit.py --inventory docs/architecture/inventory.json --scorecard docs/architecture/scorecard.json`.
    - Default to modular monolith unless scaling, isolation, ownership, security, latency, or release-cadence evidence justifies distribution.
 
-6. **Produce decisions**
+7. **Pack canonical context**
+   - Run `scripts/architecture_context_pack.py` after inventory, graph, boundary, scorecard, and pattern-fit artifacts exist.
+   - Or run `scripts/architecture_context_bootstrap.py <repo>` to create all artifacts and `docs/architecture/CONTEXT.md` in one command.
+   - Treat `CONTEXT.md` as the compact architecture baseline for future sessions. It is a token-saving cache, not a replacement for checking drift and relevant changed files.
+
+8. **Produce decisions**
    - For durable decisions, use `scripts/architecture_adr.py create`.
    - For plans, produce phases with small boundary moves, public entrypoints, dependency rules, tests, and verification commands.
 
@@ -46,14 +57,20 @@ Inspect the repository before judging it. Use scripts for inventory, graphs, bou
 - Recommend microservices only when operational evidence justifies the complexity.
 - Favor stable dependencies, acyclic dependencies, narrow public entrypoints, and testable use-case boundaries.
 - Do not present diagrams as proof by themselves; inspect hot paths and consumers.
+- Do not blindly trust exact commit pinning on fast-moving repos. Use the context freshness states to decide whether baseline-plus-drift is enough.
+- Hooks are optional. Do not install git hooks unless the user asks; task-start freshness checks are the default mechanism.
 
 ## Script Quick Reference
 
+- `scripts/architecture_context_check.py .`
+- `scripts/architecture_context_bootstrap.py . --out docs/architecture --graphs-out docs/architecture-graphs`
 - `scripts/architecture_inventory.py . --out docs/architecture/inventory.json`
 - `scripts/architecture_diagrams.py . --out docs/architecture-graphs --no-render`
 - `scripts/architecture_boundary_check.py . --index docs/architecture-graphs/architecture-index.json`
 - `scripts/architecture_scorecard.py --index docs/architecture-graphs/architecture-index.json --inventory docs/architecture/inventory.json`
 - `scripts/architecture_pattern_fit.py --inventory docs/architecture/inventory.json --scorecard docs/architecture/scorecard.json`
+- `scripts/architecture_context_pack.py --repo . --inventory docs/architecture/inventory.json --index docs/architecture-graphs/architecture-index.json --scorecard docs/architecture/scorecard.json --boundary docs/architecture/boundary-report.json --pattern-fit docs/architecture/pattern-fit.json`
+- `scripts/architecture_context_hook.py install --repo .`
 - `scripts/architecture_adr.py create "Use modular monolith boundaries" --context "..." --decision "..." --consequences "..."`
 
 ## References
